@@ -30,6 +30,12 @@ public class tankController : Photon.MonoBehaviour
     Transform MagicTank;
     PhysicsTank _tank;
 
+    public int updateRate = 10;
+    public float currentRate = 0;
+
+    Vector3 newPosition;
+    Quaternion newRotation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,22 +53,46 @@ public class tankController : Photon.MonoBehaviour
             myCam = Camera.main.transform;
             myCam.GetComponent<MouseOrbitImproved>().target = orbitPoint;
             lastRotation = turret.localEulerAngles.y;
-
+            mouseLock = true;
             thisCollider.parent = MagicTank;
             thisCollider.localPosition = thisCollider.localEulerAngles = Vector3.zero;
             MagicTank.GetComponent<Rigidbody>().isKinematic = false;
+            myCam.GetComponent<MouseOrbitImproved>().enabled = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        lookAtPointCalc();
-        turretControls();
+        if (photonView.isMine) { 
+            lookAtPointCalc();
+            //turretControls();
+            turretControl();
+            //mouseLocking();
+            //camControls();
+            posRotUpdater();
+        }
+    }
 
-        //turretControl();
-        //mouseLocking();
-        camControls();
+    void posRotUpdater()
+    {
+        if (currentRate == 0)
+        {
+            currentRate = 1 / updateRate;
+            photonView.RPC("updatePosRot", PhotonTargets.AllViaServer, MagicTank.position, MagicTank.rotation);
+        }
+        else if (currentRate > 0)
+        {
+            currentRate -= Time.deltaTime;
+        }
+        else if (currentRate < 0)
+        {
+            currentRate = 0;
+        }
+
+        transform.position = Vector3.Slerp(transform.position, newPosition, Time.deltaTime*5);
+        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 5);
+
     }
 
     void lookAtPointCalc()
@@ -131,12 +161,14 @@ public class tankController : Photon.MonoBehaviour
             if(Input.GetAxis("Mouse X") != 0)
             {
                 selfRotation = 0;
-                turret.Rotate(Vector3.up * Time.deltaTime * Input.GetAxis("Mouse X") * turretRotSpeed);
+                turret.Rotate(Vector3.up * Input.GetAxis("Mouse X"));
             }
             if (Input.GetAxis("Mouse Y") != 0)
             {
-                cannon.Rotate(Vector3.right * Time.deltaTime * -Input.GetAxis("Mouse Y") * turretRotSpeed);
+                cannon.Rotate(Vector3.right * -Input.GetAxis("Mouse Y"));
             }
+            myCam.position = cameraLockSpot.position;
+            myCam.rotation = cameraLockSpot.rotation;
         }
 
 
@@ -154,5 +186,12 @@ public class tankController : Photon.MonoBehaviour
         {
             turret.Rotate(Vector3.up * Time.deltaTime * -1 * turretRotSpeed);
         }
+    }
+
+    [PunRPC]
+    public void updatePosRot(Vector3 pos, Quaternion rot)
+    {
+        newPosition = pos;
+        newRotation = rot;
     }
 }

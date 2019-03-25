@@ -43,4 +43,5 @@ MonoBehaviour:
   - RequestForPickupItems
   - RequestForPickupTimes
   - TaggedPlayer
+  - updatePosRot
   DisableAutoOpenWizard: 1
