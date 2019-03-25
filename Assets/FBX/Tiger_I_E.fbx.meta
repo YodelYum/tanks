@@ -1,0 +1,212 @@
+fileFormatVersion: 2
+guid: 3f2ac39950b54234a8f57eea72e8b7dc
+timeCreated: 1545379776
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Tiger_I_E_Barrel
+    100004: Tiger_I_E_Gun
+    100006: Tiger_I_E_Turret
+    100008: Track_L
+    100010: Track_R
+    100012: Wheel_L_01
+    100014: Wheel_L_02
+    100016: Wheel_L_03
+    100018: Wheel_L_04
+    100020: Wheel_L_05
+    100022: Wheel_L_06
+    100024: Wheel_L_07
+    100026: Wheel_L_08
+    100028: Wheel_L_09
+    100030: Wheel_L_10
+    100032: Wheel_R_01
+    100034: Wheel_R_02
+    100036: Wheel_R_03
+    100038: Wheel_R_04
+    100040: Wheel_R_05
+    100042: Wheel_R_06
+    100044: Wheel_R_07
+    100046: Wheel_R_08
+    100048: Wheel_R_09
+    100050: Wheel_R_10
+    100052: Wheels_L
+    100054: Wheels_R
+    400000: //RootNode
+    400002: Tiger_I_E_Barrel
+    400004: Tiger_I_E_Gun
+    400006: Tiger_I_E_Turret
+    400008: Track_L
+    400010: Track_R
+    400012: Wheel_L_01
+    400014: Wheel_L_02
+    400016: Wheel_L_03
+    400018: Wheel_L_04
+    400020: Wheel_L_05
+    400022: Wheel_L_06
+    400024: Wheel_L_07
+    400026: Wheel_L_08
+    400028: Wheel_L_09
+    400030: Wheel_L_10
+    400032: Wheel_R_01
+    400034: Wheel_R_02
+    400036: Wheel_R_03
+    400038: Wheel_R_04
+    400040: Wheel_R_05
+    400042: Wheel_R_06
+    400044: Wheel_R_07
+    400046: Wheel_R_08
+    400048: Wheel_R_09
+    400050: Wheel_R_10
+    400052: Wheels_L
+    400054: Wheels_R
+    2300000: //RootNode
+    2300002: Tiger_I_E_Barrel
+    2300004: Tiger_I_E_Gun
+    2300006: Tiger_I_E_Turret
+    2300008: Track_L
+    2300010: Track_R
+    2300012: Wheel_L_01
+    2300014: Wheel_L_02
+    2300016: Wheel_L_03
+    2300018: Wheel_L_04
+    2300020: Wheel_L_05
+    2300022: Wheel_L_06
+    2300024: Wheel_L_07
+    2300026: Wheel_L_08
+    2300028: Wheel_L_09
+    2300030: Wheel_L_10
+    2300032: Wheel_R_01
+    2300034: Wheel_R_02
+    2300036: Wheel_R_03
+    2300038: Wheel_R_04
+    2300040: Wheel_R_05
+    2300042: Wheel_R_06
+    2300044: Wheel_R_07
+    2300046: Wheel_R_08
+    2300048: Wheel_R_09
+    2300050: Wheel_R_10
+    3300000: //RootNode
+    3300002: Tiger_I_E_Barrel
+    3300004: Tiger_I_E_Gun
+    3300006: Tiger_I_E_Turret
+    3300008: Track_L
+    3300010: Track_R
+    3300012: Wheel_L_01
+    3300014: Wheel_L_02
+    3300016: Wheel_L_03
+    3300018: Wheel_L_04
+    3300020: Wheel_L_05
+    3300022: Wheel_L_06
+    3300024: Wheel_L_07
+    3300026: Wheel_L_08
+    3300028: Wheel_L_09
+    3300030: Wheel_L_10
+    3300032: Wheel_R_01
+    3300034: Wheel_R_02
+    3300036: Wheel_R_03
+    3300038: Wheel_R_04
+    3300040: Wheel_R_05
+    3300042: Wheel_R_06
+    3300044: Wheel_R_07
+    3300046: Wheel_R_08
+    3300048: Wheel_R_09
+    3300050: Wheel_R_10
+    4300000: Tiger_I_E
+    4300002: Tiger_I_E_Turret
+    4300004: Tiger_I_E_Gun
+    4300006: Tiger_I_E_Barrel
+    4300008: Track_L
+    4300010: Track_R
+    4300012: Wheel_L_01
+    4300014: Wheel_L_02
+    4300016: Wheel_L_03
+    4300018: Wheel_L_04
+    4300020: Wheel_L_05
+    4300022: Wheel_L_06
+    4300024: Wheel_L_07
+    4300026: Wheel_L_08
+    4300028: Wheel_L_09
+    4300030: Wheel_L_10
+    4300032: Wheel_R_01
+    4300034: Wheel_R_02
+    4300036: Wheel_R_03
+    4300038: Wheel_R_04
+    4300040: Wheel_R_05
+    4300042: Wheel_R_06
+    4300044: Wheel_R_07
+    4300046: Wheel_R_08
+    4300048: Wheel_R_09
+    4300050: Wheel_R_10
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
