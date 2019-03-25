@@ -24,6 +24,8 @@ public class tankController : Photon.MonoBehaviour
     RaycastHit hit;
     float lastRotation;
 
+    public Transform thisCollider;
+
 
     Transform MagicTank;
     PhysicsTank _tank;
@@ -39,17 +41,23 @@ public class tankController : Photon.MonoBehaviour
         if (photonView.isMine)
         {
             MagicTank = GameObject.Find("MagicSteeringTank").transform;
+            MagicTank.position = transform.position;
             _tank = GameObject.Find("MagicSteeringTank").GetComponent<PhysicsTank>();
             Cursor.lockState = CursorLockMode.Locked;
             myCam = Camera.main.transform;
+            myCam.GetComponent<MouseOrbitImproved>().target = orbitPoint;
             lastRotation = turret.localEulerAngles.y;
+
+            thisCollider.parent = MagicTank;
+            thisCollider.localPosition = thisCollider.localEulerAngles = Vector3.zero;
+            MagicTank.GetComponent<Rigidbody>().isKinematic = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //lookAtPointCalc();
+        lookAtPointCalc();
         turretControls();
 
         //turretControl();

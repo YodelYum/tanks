@@ -54,10 +54,11 @@ public class photonController : MonoBehaviour
 
     void spawn()
     {
-        if (!alive)
+        if (!alive && PhotonNetwork.inRoom)
         {
             alive = true;
-
+            Transform spawnPoint = GameObject.Find("spawnpoint").transform;
+            PhotonNetwork.Instantiate("tiger", spawnPoint.position, spawnPoint.rotation, 0);
         }
     }
 }
