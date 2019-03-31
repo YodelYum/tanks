@@ -13,9 +13,10 @@ public class tankController : Photon.MonoBehaviour
 
     public float turretRotSpeed = 5;
 
-    bool mouseLock = true;
+    int mouseLock = 1;
 
     int selfRotation = 0;
+    int selfRotationY = 0;
 
     Transform myCam;
 
@@ -53,7 +54,7 @@ public class tankController : Photon.MonoBehaviour
             myCam = Camera.main.transform;
             myCam.GetComponent<MouseOrbitImproved>().target = orbitPoint;
             lastRotation = turret.localEulerAngles.y;
-            mouseLock = true;
+            mouseLock = 1;
             thisCollider.parent = MagicTank;
             thisCollider.localPosition = thisCollider.localEulerAngles = Vector3.zero;
             MagicTank.GetComponent<Rigidbody>().isKinematic = false;
@@ -68,10 +69,12 @@ public class tankController : Photon.MonoBehaviour
             lookAtPointCalc();
             //turretControls();
             turretControl();
-            //mouseLocking();
+            mouseLocking();
             //camControls();
             posRotUpdater();
         }
+        transform.position = Vector3.Slerp(transform.position, newPosition, Time.deltaTime * 5);
+        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 5);
     }
 
     void posRotUpdater()
@@ -90,8 +93,7 @@ public class tankController : Photon.MonoBehaviour
             currentRate = 0;
         }
 
-        transform.position = Vector3.Slerp(transform.position, newPosition, Time.deltaTime*5);
-        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 5);
+        
 
     }
 
@@ -127,18 +129,33 @@ public class tankController : Photon.MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            if(!mouseLock)
+            if(mouseLock == 2)
             {
-                mouseLock = true;
+                mouseLock = 1;
+                myCam.GetComponent<MouseOrbitImproved>().enabled = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
-            else
+            else if(mouseLock == 1)
             {
-                mouseLock = false;
-                Cursor.lockState = CursorLockMode.None;
+                mouseLock = 2;
+                myCam.GetComponent<MouseOrbitImproved>().enabled = true;
+            }
+            else if (mouseLock == 3)
+            {
+                mouseLock = 1;
+                myCam.GetComponent<MouseOrbitImproved>().enabled = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
-    }
+
+        if (Input.GetMouseButtonDown(2))
+        {
+            mouseLock = 3;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+
+        }
 
     public void turretControl()
     {
@@ -146,22 +163,14 @@ public class tankController : Photon.MonoBehaviour
         myCam.rotation = cameraLockSpot.rotation;
         myCam.eulerAngles = new Vector3(myCam.eulerAngles.x, myCam.eulerAngles.y,
             0);*/
-        if (!mouseLock)
-        {
-            if (Input.mousePosition.x < Screen.width/2)
-            {
-                turret.Rotate(Vector3.up * Time.deltaTime * -turretRotSpeed);
-            }else if (Input.mousePosition.x >= Screen.width / 2)
-            {
-                turret.Rotate(Vector3.up * Time.deltaTime * turretRotSpeed);
-            }
-        }
-        else
+        
+        if(mouseLock == 1)
         {
             if(Input.GetAxis("Mouse X") != 0)
             {
                 selfRotation = 0;
-                turret.Rotate(Vector3.up * Input.GetAxis("Mouse X"));
+                selfRotationY = 0;
+                turret.Rotate(Vector3.up * Input.GetAxis("Mouse X") * Time.deltaTime * turretRotSpeed);
             }
             if (Input.GetAxis("Mouse Y") != 0)
             {
@@ -169,6 +178,30 @@ public class tankController : Photon.MonoBehaviour
             }
             myCam.position = cameraLockSpot.position;
             myCam.rotation = cameraLockSpot.rotation;
+        }else if (mouseLock == 2)
+        {
+            orbitPoint.position = transform.position + Vector3.up * 4;
+        }else if(mouseLock == 3)
+        {
+            myCam.position = cameraLockSpot.position;
+            myCam.rotation = cameraLockSpot.rotation;
+            if (Input.mousePosition.x < Screen.width / 2)
+            {
+                selfRotation = -1;
+            }
+            else if (Input.mousePosition.x > Screen.width / 2)
+            {
+                selfRotation = 1;
+            }
+            Debug.Log(Input.mousePosition.y);
+            if (Input.mousePosition.y< Screen.height / 2)
+            {
+                selfRotationY = -1;
+            }
+            else if (Input.mousePosition.y> Screen.height / 2)
+            {
+                selfRotationY = 1;
+            }
         }
 
 
@@ -186,6 +219,15 @@ public class tankController : Photon.MonoBehaviour
         {
             turret.Rotate(Vector3.up * Time.deltaTime * -1 * turretRotSpeed);
         }
+
+        if (selfRotationY == 1)
+        {
+            cannon.Rotate(Vector3.right * Time.deltaTime * -1 * turretRotSpeed);
+        }
+        else if (selfRotationY == -1)
+        {
+            cannon.Rotate(Vector3.right * Time.deltaTime * 1 * turretRotSpeed);
+        }
     }
 
     [PunRPC]
@@ -193,5 +235,21 @@ public class tankController : Photon.MonoBehaviour
     {
         newPosition = pos;
         newRotation = rot;
+    }
+
+
+
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(turret.eulerAngles.x);
+            stream.SendNext(cannon.eulerAngles.y);
+        }
+        else
+        {
+            turret.eulerAngles = new Vector3((float)stream.ReceiveNext(), turret.eulerAngles.y, turret.eulerAngles.z);
+            cannon.eulerAngles = new Vector3(cannon.eulerAngles.x, (float)stream.ReceiveNext(), cannon.eulerAngles.z);
+        }
     }
 }

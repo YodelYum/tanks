@@ -2028,9 +2028,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turret: {fileID: 3720479966214984813}
   cannon: {fileID: 3720507147138747345}
-  cameraLockSpot: {fileID: 3303448195474008315}
+  cameraLockSpot: {fileID: 4124621921562916304}
   orbitPoint: {fileID: 2844729045205715541}
-  turretRotSpeed: 5
+  turretRotSpeed: 20
   thisCollider: {fileID: 2835901357762434596}
   updateRate: 10
   currentRate: 0
@@ -2274,6 +2274,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1141096606987574, guid: d1b0fa18c46c82a4b925619e19fb6564, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4760952735109290, guid: d1b0fa18c46c82a4b925619e19fb6564, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2317,15 +2321,6 @@ PrefabInstance:
     - target: {fileID: 4760952735109290, guid: d1b0fa18c46c82a4b925619e19fb6564, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7159953678177894966, guid: d1b0fa18c46c82a4b925619e19fb6564,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141096606987574, guid: d1b0fa18c46c82a4b925619e19fb6564, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 23676106254299472, guid: d1b0fa18c46c82a4b925619e19fb6564,
         type: 3}
@@ -2566,6 +2561,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7159953678177894966, guid: d1b0fa18c46c82a4b925619e19fb6564,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 95332676274251098, guid: d1b0fa18c46c82a4b925619e19fb6564, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d1b0fa18c46c82a4b925619e19fb6564, type: 3}
@@ -2584,12 +2584,6 @@ Transform:
 --- !u!1 &2832696681043211192 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1141096606987574, guid: d1b0fa18c46c82a4b925619e19fb6564,
-    type: 3}
-  m_PrefabInstance: {fileID: 2831584723706037902}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3303448195474008315 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 762229754711109237, guid: d1b0fa18c46c82a4b925619e19fb6564,
     type: 3}
   m_PrefabInstance: {fileID: 2831584723706037902}
   m_PrefabAsset: {fileID: 0}
